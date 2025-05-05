@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NameWizard - Domain Name Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Arial', sans-serif; }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6049474340306960"
+    crossorigin="anonymous"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center h-screen">
+
+    <!-- Floating Side Ad (Right) -->
+<div style="position:fixed; top:100px; right:10px; width:160px; z-index:999;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6049474340306960"
+      crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-6049474340306960"
+      data-ad-slot="8785529924"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <!-- Floating Side Ad (Left) -->
+<div style="position:fixed; top:100px; left:10px; width:160px; z-index:999;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6049474340306960"
+      crossorigin="anonymous"></script>
+    <!-- NameWizard-2 -->
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-6049474340306960"
+      data-ad-slot="3267585724"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  
+    <div class="w-full max-w-lg p-8 bg-white shadow-lg rounded-lg">
+        <h1 class="text-center text-4xl font-extrabold text-indigo-700 mb-6">NameWizard</h1>
+
+        <!-- Keyword Input -->
+        <input type="text" id="keyword" class="w-full p-3 border-2 border-gray-300 rounded-md text-lg mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter keyword...">
+
+        <!-- Generate Button -->
+        <button onclick="generateNames()" class="w-full py-3 bg-indigo-600 text-white font-bold text-lg rounded-md hover:bg-indigo-700">
+            Generate Domain Names
+        </button>
+
+  
+
+        <!-- Results Section -->
+        <div id="results" class="mt-8 text-center"></div>
+    </div>
+
+    <script>
+        function generateNames() {
+            const keyword = document.getElementById('keyword').value.trim();
+            const suffixes = ['ly', 'ify', 'o', 'ster', 'ix', 'ology', 'hub', 'zone', 'ify', 'verse', 'tica', 'scope', 'logy'];
+            const randomWords = ['pro', 'guru', 'space', 'labs', 'next', 'beta', 'boost', 'tech', 'plus', 'world'];
+            let names = [];
+            let generatedNames = new Set();  // To ensure unique names
+
+            if (keyword) {
+                // Generate unique names
+                while (generatedNames.size < 10) {
+                    let suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+                    let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
+                    let randomNum = Math.floor(Math.random() * 1000); // Add randomness to the name
+                    let generateWithNumber = Math.random() < 0.5; // 50% chance to include a number
+
+                    let generatedName;
+
+                    if (generateWithNumber) {
+                        generatedName = keyword + suffix + randomWord + randomNum;
+                    } else {
+                        generatedName = keyword + suffix + randomWord;
+                    }
+
+                    // Add to set to ensure uniqueness
+                    generatedNames.add(generatedName);
+                }
+
+                // Convert the set to an array and display
+                names = Array.from(generatedNames);
+
+                // Display results
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '<h2 class="text-xl font-semibold mb-4">Suggested Names</h2>';
+                names.forEach(name => {
+                    resultsDiv.innerHTML += `<div class="mb-4">
+                        <a href="https://www.namecheap.com/domains/registration/results/?domain=${name}.com" target="_blank" class="text-blue-500 hover:underline">${name}.com</a>
+                        <button onclick="copyToClipboard('${name}.com')" class="ml-4 bg-gray-300 py-1 px-3 rounded-md text-sm text-gray-700">Copy</button>
+                    </div>`;
+                });
+            }
+        }
+
+        function copyToClipboard(name) {
+            navigator.clipboard.writeText(name).then(() => {
+                alert("Copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
